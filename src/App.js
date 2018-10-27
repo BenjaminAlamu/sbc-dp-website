@@ -90,7 +90,7 @@ class App extends Component {
     const self = this;
     axios
       .get(
-        `https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/l_${
+        `https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_1080/l_${
         response.data.public_id
         },r_max,w_400,h_400,x_34,y_34/c_crop,g_face/l_text:Futura_24:${self.state.name},x_315,y_140/${process.env.REACT_APP_CLOUDINARY_IMAGE_OVERLAY}`
       )
@@ -98,7 +98,7 @@ class App extends Component {
         console.log(response);
         console.log(response.config.url);
         self.setState({ url: response.data });
-        FileSaver.saveAs(response.config.url, `${self.state.name}.jpg`);
+        FileSaver.saveAs(response.config.url, `${self.state.name}.png`);
         self.setState({ loading: false });
       })
       .catch(function (err) {
@@ -136,9 +136,8 @@ class App extends Component {
     return (
       <div className="App">
         <div className='header'>
-          <img src="./sbc.jpeg" alt="sbc-logo" />
-          {/* <p>Shepherdhill Baptist Church & Indian Christian Congregation</p>
-          <p>presents an Interdenominational Power Revival tagged</p> */}
+          <img className="logo-img" src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/v1540676155/sbc.png`} alt="sbc-logo" />
+          <img className="logo-img" src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/v1540676166/icc.png`} alt="icc-logo" />
           <h5>TRIUMPH AT LAST (Gen. 49:19)</h5>
         </div>
         <div className='row image-part'>
