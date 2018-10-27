@@ -92,7 +92,7 @@ class App extends Component {
       .get(
         `https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/l_${
         response.data.public_id
-        },r_max,w_400,h_400,x_34,y_34/c_crop,g_face/l_text:Arial_24:${self.state.name},x_315,y_140/${process.env.REACT_APP_CLOUDINARY_IMAGE_OVERLAY}`
+        },r_max,w_400,h_400,x_34,y_34/c_crop,g_face/l_text:Futura_24:${self.state.name},x_315,y_140/${process.env.REACT_APP_CLOUDINARY_IMAGE_OVERLAY}`
       )
       .then(function (response) {
         console.log(response);
