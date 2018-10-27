@@ -162,6 +162,7 @@ class App extends Component {
             <form onSubmit={this.onSubmit}>
               <input className="fileInput "
                 type="file"
+                accept='image/*'
                 onChange={(e) => this._handleImageChange(e)} />
               <div className="imgPreview">
                 {imagePreview}
