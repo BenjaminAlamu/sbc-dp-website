@@ -1,76 +1,101 @@
-body {
-  font-family: 'Nunito';
-  margin: 0;
-  background-color: #f4f4f4;
-  padding: 0;
-  max-width: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+ body {
+   font-family: 'Nunito';
+   margin: 0;
+   background-color: #f4f4f4;
+   padding: 0;
+   max-width: 100%;
+   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+ }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
+ code {
+   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+ }
 
-li {
-  text-align: left;
-}
+ li {
+   text-align: left;
+ }
 
-div {
-  margin: auto;
-}
+ div {
+   margin: auto;
+ }
 
-ul {
-  margin: auto;
-  padding: 10px;
-}
+ ul {
+   margin: auto;
+   padding: 10px;
+ }
 
-.info {
-  vertical-align: middle;
-}
+ .info {
+   vertical-align: middle;
+ }
 
-.upload {
-  max-width: 50% !important;
-}
+ .upload {
+   margin: 0;
+   padding: 0;
+ }
 
-.row {
-  margin: auto;
-}
+ .row {
+   margin: auto;
+ }
 
-input[type='text'] {
-  outline: 0;
-  background: transparent;
-  font-size: 12px;
-  height: auto;
-  margin: auto;
-  width: 80%;
-  font-family: "Montserrat";
-  display: block;
-}
+ input[type='text'] {
+   outline: 0;
+   background: transparent;
+   font-size: 12px;
+   height: auto;
+   margin: auto;
+   width: 300px;
+   font-family: "Montserrat";
+   display: block;
+ }
 
-.header {
-  margin: 0;
-  font-family: 'Montserrat';
-  background-color: #341949;
-  color: #FFCA51;
-  padding: 15px;
-}
+ .header {
+   margin: 0;
+   font-family: 'Montserrat';
+   background-color: #341949;
+   color: #FFCA51;
+   padding: 10px;
+   max-width: 100%;
+ }
 
-.error {
-  color: red;
-}
+ .error {
+   color: red;
+   margin: 0;
+ }
 
-.header p {
-  margin: 0;
-  padding: 0;
-}
+ .header p {
+   margin: 0;
+   padding: 0;
+ }
 
-.image-part {
-  margin: 30px;
-}
+ .image-part {
+   margin: 20px;
+ }
 
-.upload-btn {
-  background-color: #341949;
-  color: #FFCA51;
-}
+ .upload-btn {
+   background-color: #341949;
+   color: #FFCA51;
+ }
+
+ .imgPreview {
+   text-align: center;
+   margin: 10px auto;
+   height: 200px;
+   width: 350px;
+   border: 1px solid black
+ }
+
+ img {
+   width: 100%;
+   height: 100%;
+ }
+
+ .previewText {
+   width: 100%;
+   margin-top: 20px;
+ }
+
+ .info {
+   margin: 5px;
+ }

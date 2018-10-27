@@ -15,23 +15,35 @@ class App extends Component {
       file: null,
       error: " ",
       pictures: [],
-      url: "",
-      image_id: "",
+      imagePreviewUrl: "",
       name: "",
       loading: false
     };
-    this.onDrop = this.onDrop.bind(this);
+    // this.onDrop = this.onDrop.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this._handleImageChange = this._handleImageChange.bind(this);
+
   }
 
   handleChange(event) {
     this.setState({ name: event.target.value });
   }
 
-  onDrop(picture) {
-    this.setState({ pictures: picture });
-    console.log(this.state);
+  _handleImageChange(e) {
+    e.preventDefault();
+
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imagePreviewUrl: reader.result
+      });
+    }
+
+    reader.readAsDataURL(file)
   }
 
   onSubmit(e) {
@@ -39,9 +51,9 @@ class App extends Component {
     this.setState({ error: "" });
     this.setState({ loading: true });
     const self = this;
-    if ((self.state.name.length > 0) && (self.state.pictures.length > 0)) {
+    if ((self.state.name.length > 0) && (self.state.file)) {
       const formData = new FormData();
-      formData.append("file", this.state.pictures[0]);
+      formData.append("file", this.state.file);
       formData.append(
         "upload_preset",
         process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
@@ -63,7 +75,7 @@ class App extends Component {
           self.setState({ error: "An error occured please try again" });
         });
     }
-    else if (!self.state.pictures.length > 0) {
+    else if (!self.state.file > 0) {
       self.setState({ error: "Please select an image" });
       self.setState({ loading: false });
     }
@@ -99,13 +111,22 @@ class App extends Component {
   render() {
     const loading = this.state.loading
     let load;
+    let imagePreview;
+    const imagePreviewUrl = this.state.imagePreviewUrl;
+
+
+    if (imagePreviewUrl) {
+      imagePreview = (<img src={imagePreviewUrl} alt="" />);
+    } else {
+      imagePreview = (<div className="previewText">Please select an Image for upload</div>);
+    }
 
     if (loading) {
       load = <Loader
         type="ThreeDots"
         color="#00BFFF"
-        height="100"
-        width="100"
+        height="50"
+        width="50"
       />;
     }
     else {
@@ -116,8 +137,8 @@ class App extends Component {
       <div className="App">
         <div className='header'>
           <img src="./sbc.jpeg" alt="sbc-logo" />
-          <p>Shepherdhill Baptist Church & Indian Christian Congregation</p>
-          <p>presents an Interdenominational Power Revival tagged</p>
+          {/* <p>Shepherdhill Baptist Church & Indian Christian Congregation</p>
+          <p>presents an Interdenominational Power Revival tagged</p> */}
           <h5>TRIUMPH AT LAST (Gen. 49:19)</h5>
         </div>
         <div className='row image-part'>
@@ -134,29 +155,23 @@ class App extends Component {
             </div>
           </div>
           <div className='col-md-6 upload'>
-            <p>Upload your image here</p>
+            {load}
+            <p className="info">Upload your image here</p>
+            <p className='error'>{this.state.error}</p><br />
             {/* Image Uploader */}
             <form onSubmit={this.onSubmit}>
-              <ImageUploader
-                buttonText="Select image"
-                withPreview={true}
-                withIcon={false}
-                fileContainerStyle={{ height: 250 + 'px' }}
-                onChange={this.onDrop}
-                fileTypeError="File format not supported. Please select a png or jpg image"
-                fileSizeError="Image size is too large"
-                imgExtension={[".jpg", ".png", "jpeg",]}
-                maxFileSize={5242880}
-                singleImage={true}
-
-              />
-              <p className='error'>{this.state.error}</p><br />
+              <input className="fileInput "
+                type="file"
+                onChange={(e) => this._handleImageChange(e)} />
+              <div className="imgPreview">
+                {imagePreview}
+              </div>
               <div className="form-group">
                 <input type="text" className="form-control" value={this.state.name} placeholder="Enter name here" onChange={this.handleChange} />
               </div>
               <input type="submit" value="Create Image" className="btn btn-primary mb-2 upload-btn" />
             </form>
-            {load}
+
           </div>
         </div>
       </div>
