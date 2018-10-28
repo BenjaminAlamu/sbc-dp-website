@@ -19,7 +19,7 @@ class App extends Component {
       name: "",
       loading: false
     };
-    // this.onDrop = this.onDrop.bind(this);
+    this.onDrop = this.onDrop.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this._handleImageChange = this._handleImageChange.bind(this);
@@ -90,9 +90,9 @@ class App extends Component {
     const self = this;
     axios
       .get(
-        `https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_1080/l_${
+        `https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/l_${
         response.data.public_id
-        },r_max,w_400,h_400,x_34,y_34/c_crop,g_face/l_text:Futura_24:${self.state.name},x_315,y_140/${process.env.REACT_APP_CLOUDINARY_IMAGE_OVERLAY}`
+        },h_1300,w_1300,r_max,x_110,y_110/l_text:Futura_92:${self.state.name},x_1070,y_445/${process.env.REACT_APP_CLOUDINARY_IMAGE_OVERLAY}`
       )
       .then(function (response) {
         console.log(response);
@@ -106,6 +106,17 @@ class App extends Component {
         self.setState({ loading: false });
         self.setState({ error: "An error occured please try again" });
       });
+  }
+
+  onDrop(pictureFiles) {
+
+    this.setState({
+      pictures: []
+    })
+
+    this.setState({
+      pictures: this.state.pictures.concat(pictureFiles),
+    });
   }
 
   render() {
