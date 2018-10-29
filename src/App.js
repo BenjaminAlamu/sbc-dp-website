@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Link } from 'react-router-dom'
 import './App.css';
 import Loader from 'react-loader-spinner'
 import axios from "axios";
-import ImageUploader from "react-images-upload";
 import FileSaver from "file-saver";
 
 
@@ -185,6 +184,7 @@ class App extends Component {
 
           </div>
         </div>
+        <footer>Built from the ground up with <span role='img' aria-label="Love emoji">❤️</span> by <a href='https://twitter.com/Benjamin_Alamu'>Benjamin Alamu</a></footer>
       </div>
     );
   }

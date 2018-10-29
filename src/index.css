@@ -106,6 +106,18 @@
    padding: 5px;
  }
 
+ footer {
+   text-align: center;
+   position: fixed;
+   bottom: 0;
+   left: 34%;
+   margin: 10px;
+ }
+
+ .body {
+   min-height: calc(100vh-1004px);
+ }
+
  @media only screen and (max-width: 600px) {
    .imgPreview {
      text-align: center;
@@ -113,5 +125,8 @@
      height: 200px;
      width: 300px;
      border: 1px solid black
+   }
+   footer {
+     position: static;
    }
  }
