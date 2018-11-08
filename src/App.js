@@ -126,7 +126,7 @@ class App extends Component {
         type="ThreeDots"
         color="#00BFFF"
         height="50"
-        width="50"
+        width="70"
       />;
     }
     else {
