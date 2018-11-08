@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
 import './App.css';
 import Loader from 'react-loader-spinner'
 import axios from "axios";
@@ -15,21 +14,16 @@ class App extends Component {
       error: " ",
       pictures: [],
       imagePreviewUrl: "",
-      name: "",
       loading: false
     };
     this.onDrop = this.onDrop.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this._handleImageChange = this._handleImageChange.bind(this);
 
   }
 
-  handleChange(event) {
-    this.setState({ name: event.target.value });
-  }
 
-  _handleImageChange(e) {
+  _handleImageChange (e) {
     e.preventDefault();
 
     let reader = new FileReader();
@@ -45,12 +39,12 @@ class App extends Component {
     reader.readAsDataURL(file)
   }
 
-  onSubmit(e) {
+  onSubmit (e) {
     e.preventDefault();
     this.setState({ error: "" });
     this.setState({ loading: true });
     const self = this;
-    if ((self.state.name.length > 0) && (self.state.file)) {
+    if (self.state.file) {
       const formData = new FormData();
       formData.append("file", this.state.file);
       formData.append(
@@ -61,7 +55,7 @@ class App extends Component {
       //Upload Image
       axios
         .post(
-          `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/`,
+          `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload/`,
           formData
         )
         .then(function (response) {
@@ -79,25 +73,21 @@ class App extends Component {
       self.setState({ loading: false });
     }
 
-    else if (!self.state.name.length > 0) {
-      self.setState({ error: "Please enter your name" });
-      self.setState({ loading: false });
-    }
   }
 
-  addOverlay(response) {
+  addOverlay (response) {
     const self = this;
     axios
       .get(
-        `https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/l_${
+        `https://res.cloudinary.com/${process.env.REACT_APP_CLOUD_NAME}/image/upload/l_${
         response.data.public_id
-        },h_1300,w_1300,r_max,x_110,y_110/l_text:Futura_92:${self.state.name},x_1070,y_445/${process.env.REACT_APP_CLOUDINARY_IMAGE_OVERLAY}`
+        },h_1300,w_1300,r_max,x_110,y_110/${process.env.REACT_APP_IMAGE_OVERLAY}.jpg`
       )
       .then(function (response) {
         console.log(response);
         console.log(response.config.url);
         self.setState({ url: response.data });
-        FileSaver.saveAs(response.config.url, `${self.state.name}.jpg`);
+        FileSaver.saveAs(response.config.url, `Yahweh.jpg`);
         self.setState({ loading: false });
       })
       .catch(function (err) {
@@ -107,7 +97,7 @@ class App extends Component {
       });
   }
 
-  onDrop(pictureFiles) {
+  onDrop (pictureFiles) {
 
     this.setState({
       pictures: []
@@ -118,7 +108,7 @@ class App extends Component {
     });
   }
 
-  render() {
+  render () {
     const loading = this.state.loading
     let load;
     let imagePreview;
@@ -146,9 +136,8 @@ class App extends Component {
     return (
       <div className="App">
         <div className='header'>
-          <img className="logo-img" src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/v1540676155/sbc.png`} alt="sbc-logo" />
-          <img className="logo-img" src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/v1540676166/icc.png`} alt="icc-logo" />
-          <h5>TRIUMPH AT LAST (Gen. 49:19)</h5>
+          <img className="logo-img" src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUD_NAME}/image/upload/v1540676155/ra_logo.png`} alt="ra-logo" />
+          <h2>Yahweh '18</h2>
         </div>
         <div className='row image-part'>
           <div className='col-md-4 col-md-offset-1'>
@@ -175,9 +164,6 @@ class App extends Component {
                 onChange={(e) => this._handleImageChange(e)} />
               <div className="imgPreview">
                 {imagePreview}
-              </div>
-              <div className="form-group">
-                <input type="text" className="form-control" value={this.state.name} placeholder="Enter name here" onChange={this.handleChange} />
               </div>
               <input type="submit" value="Create Image" className="btn btn-primary mb-2 upload-btn" />
             </form>
