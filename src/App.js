@@ -90,7 +90,7 @@ class App extends Component {
       .get(
         `https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/l_${
         response.data.public_id
-        },h_1300,w_1300,r_max,y_-15/l_text:Futura_72:${self.state.name},x_970,y_520,a_-3/${process.env.REACT_APP_IMAGE_OVERLAY}`
+        },h_1300,w_1300,r_max,y_-15/l_text:Futura_92:${self.state.name},x_1025,y_540,a_-4/${process.env.REACT_APP_IMAGE_OVERLAY}`
       )
       .then(function (response) {
         console.log(response);
@@ -175,8 +175,8 @@ class App extends Component {
                 {imagePreview}
               </div>
               <div className="form-group">
-                <label>Enter name here: (Limited to 20 characters)</label>
-                <input type="text" maxLength="20" className="form-control" value={this.state.name} placeholder="Enter name here" onChange={this.handleChange} />
+                <label>Enter name here: (Limited to 25 characters)</label>
+                <input type="text" maxLength="25" className="form-control" value={this.state.name} placeholder="Enter name here" onChange={this.handleChange} />
               </div>
               <input type="submit" value="Create Image" className="btn btn-primary mb-2 upload-btn" />
             </form>
