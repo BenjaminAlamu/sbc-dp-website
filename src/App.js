@@ -152,6 +152,7 @@ class App extends Component {
       <div className="App">
         <div className='header'>
           <img className="logo-img" src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/v1540676155/sbc.png`} alt="sbc-logo" />
+          <h5>New Year Revival 2018</h5>
           <h5>And God is Able(2 Cor. 9:8)</h5>
         </div>
         <div className='row image-part'>
