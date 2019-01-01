@@ -50,7 +50,7 @@ class App extends Component {
     this.setState({ error: "" });
     this.setState({ loading: true });
     const self = this;
-    if ((self.state.name.length > 0) && (self.state.file)) {
+    if ((self.state.name.length > 0) && (self.state.name.length <= 25) && (self.state.file)) {
       const formData = new FormData();
       formData.append("file", this.state.file);
       formData.append(
@@ -83,6 +83,11 @@ class App extends Component {
       self.setState({ error: "Please enter your name" });
       self.setState({ loading: false });
     }
+
+    else if (!self.state.name.length > 25) {
+      self.setState({ error: "Name is too long, maximum of 25 characters" });
+      self.setState({ loading: false });
+    }
   }
 
   addOverlay(response) {
@@ -91,7 +96,7 @@ class App extends Component {
       .get(
         `https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/l_${
         response.data.public_id
-        },h_1300,w_1300,r_max,x_110,y_110/l_text:Futura_92:${self.state.name},x_1070,y_445/${process.env.REACT_APP_CLOUDINARY_IMAGE_OVERLAY}`
+        },h_2070,w_2070,r_max/l_text:Futura_98:${self.state.name},y_1150,co_rgb:fff/${process.env.REACT_APP_CLOUDINARY_IMAGE_OVERLAY}`
       )
       .then(function (response) {
         console.log(response);
