@@ -152,8 +152,7 @@ class App extends Component {
       <div className="App">
         <div className='header'>
           <img className="logo-img" src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/v1540676155/sbc.png`} alt="sbc-logo" />
-          <img className="logo-img" src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/v1540676166/icc.png`} alt="icc-logo" />
-          <h5>TRIUMPH AT LAST (Gen. 49:19)</h5>
+          <h5>And God is Able(2 Cor. 9:8)</h5>
         </div>
         <div className='row image-part'>
           <div className='col-md-4 col-md-offset-1'>
@@ -181,8 +180,9 @@ class App extends Component {
               <div className="imgPreview">
                 {imagePreview}
               </div>
+              <label>Enter name here: (Limited to 25 characters)</label>
               <div className="form-group">
-                <input type="text" className="form-control" value={this.state.name} placeholder="Enter name here" onChange={this.handleChange} />
+                <input type="text" className="form-control" maxLength="25" value={this.state.name} placeholder="Enter name here" onChange={this.handleChange} />
               </div>
               <input type="submit" value="Create Image" className="btn btn-primary mb-2 upload-btn" />
             </form>
