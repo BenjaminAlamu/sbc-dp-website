@@ -158,7 +158,7 @@ class App extends Component {
         <div className='row image-part'>
           <div className='col-md-4 col-md-offset-1'>
             <div className='info'>
-              <p>How to create your personalized DP</p>
+              <p>How to create your personalized image</p>
               <ol>
                 <li>Click on Select Image</li>
                 <li>Select an image from your computer or phone</li>
