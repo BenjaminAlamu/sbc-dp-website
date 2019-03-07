@@ -96,7 +96,7 @@ class App extends Component {
       .get(
         `https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/l_${
         response.data.public_id
-        },h_2070,w_2070,r_max/l_text:Futura_98:${self.state.name},y_1150,co_rgb:fff/${process.env.REACT_APP_CLOUDINARY_IMAGE_OVERLAY}`
+        },h_260,w_260,y_-310,x_15,r_max/l_text:Futura_24:${self.state.name},y_-160,x_80,co_rgb:fff/${process.env.REACT_APP_CLOUDINARY_IMAGE_OVERLAY}`
       )
       .then(function (response) {
         console.log(response);
@@ -151,9 +151,9 @@ class App extends Component {
     return (
       <div className="App">
         <div className='header'>
-          <img className="logo-img" src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/v1540676155/sbc.png`} alt="sbc-logo" />
-          <h5>New Year Revival 2019</h5>
-          <h5>And God is Able (2 Cor. 9:8)</h5>
+          {/* <img className="logo-img" src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/v1540676155/sbc.png`} alt="sbc-logo" /> */}
+          <h5>Exploit 2019</h5>
+          <h5>Fit for the Master's use (Matt 21:1-3, 2 Tim 2:20-21)</h5>
         </div>
         <div className='row image-part'>
           <div className='col-md-4 col-md-offset-1'>
