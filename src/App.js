@@ -190,7 +190,7 @@ class App extends Component {
 
           </div>
         </div>
-        <footer>Built from the ground up with <span role='img' aria-label="Love emoji">❤️</span> by <a href='https://twitter.com/Benjamin_Alamu'>Benjamin Alamu</a></footer>
+        <footer>Built from the ground up with <span role='img' aria-label="Love emoji">❤️</span> by <a href='https://www.facebook.com/MACformation/'>Kehinde Odesola</a></footer>
       </div>
     );
   }
