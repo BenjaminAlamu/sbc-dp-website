@@ -50,7 +50,7 @@ class App extends Component {
     this.setState({ error: "" });
     this.setState({ loading: true });
     const self = this;
-    if ((self.state.name.length > 0) && (self.state.file)) {
+    if ((self.state.name.length > 0) && (self.state.name.length <= 25) && (self.state.file)) {
       const formData = new FormData();
       formData.append("file", this.state.file);
       formData.append(
@@ -83,6 +83,11 @@ class App extends Component {
       self.setState({ error: "Please enter your name" });
       self.setState({ loading: false });
     }
+
+    else if (!self.state.name.length > 25) {
+      self.setState({ error: "Name is too long, maximum of 25 characters" });
+      self.setState({ loading: false });
+    }
   }
 
   addOverlay(response) {
@@ -91,7 +96,7 @@ class App extends Component {
       .get(
         `https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/l_${
         response.data.public_id
-        },h_1300,w_1300,r_max,x_110,y_110/l_text:Futura_92:${self.state.name},x_1070,y_445/${process.env.REACT_APP_CLOUDINARY_IMAGE_OVERLAY}`
+        },h_260,w_260,y_-310,x_15,r_max/l_text:Futura_24:${self.state.name},y_-160,x_80,co_rgb:fff/${process.env.REACT_APP_CLOUDINARY_IMAGE_OVERLAY}`
       )
       .then(function (response) {
         console.log(response);
@@ -146,14 +151,14 @@ class App extends Component {
     return (
       <div className="App">
         <div className='header'>
-          <img className="logo-img" src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/v1540676155/sbc.png`} alt="sbc-logo" />
-          <img className="logo-img" src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/v1540676166/icc.png`} alt="icc-logo" />
-          <h5>TRIUMPH AT LAST (Gen. 49:19)</h5>
+          {/* <img className="logo-img" src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/v1540676155/sbc.png`} alt="sbc-logo" /> */}
+          <h5>Exploit 2019</h5>
+          <h5>Fit for the Master's use (Matt 21:1-3, 2 Tim 2:20-21)</h5>
         </div>
         <div className='row image-part'>
           <div className='col-md-4 col-md-offset-1'>
             <div className='info'>
-              <p>How to create your personalized DP</p>
+              <p>How to create your personalized image</p>
               <ol>
                 <li>Click on Select Image</li>
                 <li>Select an image from your computer or phone</li>
@@ -176,15 +181,16 @@ class App extends Component {
               <div className="imgPreview">
                 {imagePreview}
               </div>
+              <label>Enter name here: (Limited to 25 characters)</label>
               <div className="form-group">
-                <input type="text" className="form-control" value={this.state.name} placeholder="Enter name here" onChange={this.handleChange} />
+                <input type="text" className="form-control" maxLength="25" value={this.state.name} placeholder="Enter name here" onChange={this.handleChange} />
               </div>
               <input type="submit" value="Create Image" className="btn btn-primary mb-2 upload-btn" />
             </form>
 
           </div>
         </div>
-        <footer>Built from the ground up with <span role='img' aria-label="Love emoji">❤️</span> by <a href='https://twitter.com/Benjamin_Alamu'>Benjamin Alamu</a></footer>
+        <footer>Built from the ground up with <span role='img' aria-label="Love emoji">❤️</span> by <a href='https://www.facebook.com/MACformation/'>Kehinde Odesola</a></footer>
       </div>
     );
   }
